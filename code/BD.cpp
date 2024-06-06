@@ -6,6 +6,8 @@
 
 using namespace std;
 
+string date( string str);
+
 struct datos {
 
     string command;
@@ -47,28 +49,70 @@ int main (){
                 cin>>entrada.user_date;
                 cin.ignore();
                 getline(cin, entrada.user_event);
+                string correct_date = date(entrada.user_date); //Obtenemos la fecha modificada.
+                if(correct_date == "Invalid month value"){
+                    cout<<"Invalid month value / try again"<<endl;
+                    continue;
+                }else if(correct_date == "Invalid day value"){
+                    cout<<"Invalid day value / try again"<<endl;
+                    continue;
+                }
+                else {
 
-                persona.push_back(entrada);     
+                entrada.user_date = correct_date;
+                persona.push_back(entrada); 
+                }    
 
             }else if (entrada.command == "Del") {
 
-                    cin >> entrada.user_date;
-                    cin.ignore();
+                cin >> entrada.user_date;
+                cin.ignore();
+                getline(cin, entrada.user_event);
+                string correct_date = date(entrada.user_date); //Obtenemos la fecha modificada.
 
-                    getline(cin, entrada.user_event);
+                if(correct_date == "Invalid month value"){
+                    cout<<"Invalid month value / try again"<<endl;
+                    continue;
+                }else if(correct_date == "Invalid day value"){
+                    cout<<"Invalid day value / try again"<<endl;
+                    continue;
+                }
+                else {
+
                     if(entrada.user_event == ""){
+
+                        entrada.user_date = correct_date;
                         persona.push_back(entrada);
                         continue;
                     }
                     else{
+                        entrada.user_date = correct_date;
                         persona.push_back(entrada);
-                    }
+                    }                   
 
+                    
+                }   
+                                     
             }else if( entrada.command == "Find"){
+                
 
                 cin>>entrada.user_date;
-                persona.push_back(entrada);
-                continue;          
+
+                string correct_date = date(entrada.user_date); //Obtenemos la fecha modificada.
+                if(correct_date == "Invalid month value"){
+                    cout<<"Invalid month value / try again"<<endl;
+                    continue;
+                }else if(correct_date == "Invalid day value"){
+                    cout<<"Invalid day value / try again"<<endl;
+                    continue;
+                }
+                else {
+
+                entrada.user_date = correct_date;
+                persona.push_back(entrada); 
+                continue;  
+                }                   
+                       
             }
             
             else{
@@ -170,6 +214,125 @@ int main (){
     return 0; 
 
 
+}
+
+string date( string str){
+
+    string anhos;
+    string meses;
+    string dias;
+    int guion1 = 0;
+    int guion2 = 0;
+    int guion3 = 0;
+    bool negativo1 = false;
+    bool negativo2 = false;
+    bool negativo3 = false; 
+    
+
+    if(str[0] == '-' ){
+        negativo1 = true;
+    }
+
+    if(!negativo1){
+        for(int i = 0; i < str.size(); ++i){    
+            if(str[i] == '-'){
+                guion1 = i; 
+                break;
+            }else{
+                anhos += str[i];
+            }
+        }
+    }else{
+        for(int i = 1; i < str.size(); ++i){    
+            if(str[i] == '-'){
+                guion1 = i; 
+                break;
+            }else{
+                anhos += str[i];
+            }
+        }
+    }
+    
+
+    if(str[guion1 + 1] == '-'){
+        negativo2 = true;
+    }
+
+    if(!negativo2){
+        for(int i = guion1 + 1; i < str.size(); ++i){    
+            if(str[i] == '-'){
+                guion2 = i; 
+                break;
+            }else{
+                meses += str[i];
+            }
+        }        
+    }else{
+        for(int i = guion1 + 2; i < str.size(); ++i){    
+            if(str[i] == '-'){
+                guion2 = i; 
+                break;
+            }else{
+                meses += str[i];
+            }
+        }        
+    }
+    
+ 
+    if(str[guion2 + 1] == '-'){
+        negativo3 = true;
+    }
+ 
+    if(!negativo3){
+        for(int i = guion2 + 1; i < str.size(); ++i){   
+            dias += str[i];
+        }        
+    }else{
+        for(int i = guion2 + 2; i < str.size(); ++i){    
+            dias += str[i];
+        }        
+    }
+    
+
+    if(negativo1){
+        anhos = "-" + anhos;
+    }
+    if(negativo2){
+        meses = "-" + meses;
+    }
+    if(negativo3){
+        dias = "-" + dias; 
+    }
+    
+
+    int anhos_int = stoi(anhos);
+    int meses_int = stoi(meses);
+    int dias_int = stoi(dias);
+    
+    if(anhos_int > 0){
+        while(anhos.size() < 4){
+            anhos = "0" + anhos;
+        }
+    }
+    if(meses_int > 0 && meses_int <= 12){
+        while(meses.size() < 2){
+            meses = "0" + meses;
+        }
+    }else{
+        return "Invalid month value";
+    }
+    
+    if(dias_int > 0 && dias_int <= 31){
+        while(dias.size() < 2){
+            dias = "0" + dias;
+        }
+    }else{
+        return "Invalid day value";
+    }
+    
+    string result = anhos + "-" + meses + "-" + dias;
+
+    return result;
 }
 
 
