@@ -76,11 +76,19 @@ Finalmente el evento puede ser ingresado a gusto!. Con estas instrucciones puede
 
 
 [![-----------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/colored.png)](#contributors)
-## ➤ DIAGRAMA DE FLUJO DEL PROGRAMA
+
 
 ![Base de datos diagrama](Documentation/Diagrama%20de%20flujo%20.drawio.png)
 
+**Las funciones a detella las podemos ver en la carpeta documentation**
+
 [![-----------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/colored.png)](#contributors)
+
+![-----------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/dark.png)
+
+## ➤ JUSTIFICACION DEL PROYECTO
+Una vez aclarado que es una base de datos y haber explicado la funcionalidad del codigo. Podria decirse que el programa es una base de datos?. Como se menciono es un PROTOTIPO de base de datos, si bien no estamos haciendo uso de SQL, si estamos almacenando los datos de forma SISTEMATICA y podemos acceder a ellos comodamente atraves de comandos. Por lo que si, esta implementacion puede llamarse base de datos, cuida la integridad de los datos, es sistematico y puede ser escalable. 
+![-----------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/dark.png)
 
 ## ➤ Contributors
 	
